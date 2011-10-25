@@ -4,8 +4,6 @@
 
 #set up postMessage listener (enable cross-origin communiation ie postMessage from bookmarklet site to local)
 receiveMessage = (event) ->
-  alert(event.data)
-  console.log("hello0")
   document.getElementById("clipping_content_ifr").contentDocument.getElementById("tinymce").innerHTML += event.data + '<br>'
 
 window.addEventListener("message", receiveMessage, false)
