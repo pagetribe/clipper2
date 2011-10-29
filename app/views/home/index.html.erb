@@ -2,10 +2,6 @@
 <p>Find me in app/views/home/index.html.erb</p>
 
 
-<%= link_to 'Clipper Bookmarklet', 
-            "javascript:(function(){ 
-              alert('hello');
-            })();" 
-%>
+<%= link_to "Clipper Bookmarklet", "javascript:void((function(){var%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('src','http://#{request.host_with_port}/assets/bookmarklet/bookmarklet.js?'+Math.floor(Math.random()*99999));document.body.appendChild(e)})())"%>
 
 <p>Drag the above button to your browser’s Bookmarks Toolbar.</p> 

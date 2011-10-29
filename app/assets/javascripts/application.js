@@ -6,5 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+// require_tree .
+//= require_directory . 
+//directory prevent any sub dirs from javascript loading use require_tree . to include all files
 //= require tinymce
