@@ -1,4 +1,5 @@
-HOST_NAME = "localhost:3000"
+# HOST_NAME = "localhost:3000"
+HOST_NAME = "0.0.0.0:3000"
 
 # add jquery to page if it is not already present
 addJQuery = ->
@@ -7,6 +8,13 @@ addJQuery = ->
     jQ.type = 'text/javascript'
     jQ.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'
     document.body.appendChild(jQ)
+
+addCSS = (href) ->
+  css = document.createElement('link')
+  css.rel = 'stylesheet'
+  css.type = 'text/css'
+  css.href = href
+  document.head.appendChild(css)
 
 # wait for jquery to be loaded
 allowTextSelectionWhenPossible = ->
@@ -32,6 +40,7 @@ getSelected = ->
 
 /* create sniffer */
 selectedSniffer = ->
+  selectionImage = null
   jQuery(@).mouseup (event) ->
     console.log('mouseup')
     url = 'http://addurlhere.com'
@@ -42,7 +51,19 @@ selectedSniffer = ->
         selectionImage = $('<a>').attr({href: url, title: 'Click to add.', target: '_blank', id: 'selection-image'}).hide()
         $(document.body).append(selectionImage)
         console.log(selectionImage)
-        #working on this see jsfiddle for code
+      selectionImage.css({
+        top: event.pageY - 35,
+        left: event.pageX - 6,
+        height: '24px',
+        width: '24px',
+        position: 'absolute',
+        background: 'url(' + 'http://' + HOST_NAME + '/assets/24bubble-plus.png' + ')'
+      }).fadeIn();
+  jQuery(@).mousedown (event) ->
+    if(selectionImage)
+      selectionImage.fadeOut();
+
+  #working on this see jsfiddle for code
 
 
 
@@ -71,6 +92,7 @@ clippySetIframe = ->
 
 addFrameToPage = ->
   addJQuery()
+  addCSS('http://' + HOST_NAME + '/assets/bookmarklet.css')
   console.log "in addDiv"
   container = document.createElement("div")
   container.style.padding = "0"
