@@ -50,6 +50,7 @@ selectedSniffer = ->
       if !selectionImage?
         selectionImage = $('<a>').attr({href: url, title: 'Click to add.', target: '_blank', id: 'selection-image'}).hide()
         $(document.body).append(selectionImage)
+        $('#selection-image').click -> addPostMessage()
         console.log(selectionImage)
       selectionImage.css({
         top: event.pageY - 35,
@@ -68,17 +69,20 @@ selectedSniffer = ->
 
 
 addPostMessage = ->
-  scr = document.createElement('script')
-  scr.innerHTML = "window.onload = function(){\
-      var win = document.getElementById('clippywrapper').contentWindow;\
-      //change this to javascript funct that detects user selected text this was for testing from a form.
-      //this works win.postMessage( '...text to go into text box here...', '*' );\
-      document.getElementById('new_clipping').onsubmit = function(e){\
-        win.postMessage( document.getElementById('msg').value, '*' );\
-        e.preventDefault();\
-        };\
-      };"
-
+  alert("hello");
+  # see comment in text below
+  # scr = document.createElement('script')
+  # scr.innerHTML = "window.onload = function(){\
+  #     var win = document.getElementById('clippywrapper').contentWindow;\
+  #     //change this to javascript funct that detects user selected text this was for testing from a form.
+  #     //this works win.postMessage( '...text to go into text box here...', '*' );\
+  #     document.getElementById('new_clipping').onsubmit = function(e){\
+  #       win.postMessage( document.getElementById('msg').value, '*' );\
+  #       e.preventDefault();\
+  #       };\
+  #     };"
+# see http://jsfiddle.net/XA6kS/2/
+# http://fiddle.jshell.net/XA6kS/2/show/light/
 
 clippySetIframe = ->
   iframe = document.getElementById("clippywrapper").contentWindow
